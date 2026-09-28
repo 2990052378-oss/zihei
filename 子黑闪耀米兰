@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>子黑闪耀米兰</title>
+<style>
+:root {
+  --bg: #fff7fa;
+  --paper: #fff;
+  --ink: #201b1d;
+  --muted: #9a8f94;
+  --line: #f0e5e9;
+  --pink: #ff6f9d;
+  --pink2: #ff9fbd;
+  --soft: #fff0f5;
+  --shadow: 0 18px 50px rgba(94,50,67,.10);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 15% 5%,#ffe9f1 0,transparent 27%),
+              radial-gradient(circle at 88% 12%,#fff0f5 0,transparent 24%),
+              linear-gradient(180deg,#fff9fb,#fff);
+  color: var(--ink);
+  font-family: -apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+}
+button { font: inherit; }
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
+
+/* Hero Section */
+.hero { text-align: center; padding: 22px 0 24px; }
+.logo {
+  display: inline-flex;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #f4dce5;
+  box-shadow: 0 5px 20px rgba(255,111,157,.08);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  color: #df5d88;
+}
+.hero h1 {
+  margin: 16px auto 8px;
+  font-size: clamp(26px, 4.5vw, 42px);
+  line-height: 1.2;
+  font-weight: 950;
+}
+.hero h1 .brand { color: var(--pink); }
+.hero p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* Panel & Stage */
+.panel {
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.stage { font-size: 14px; font-weight: 900; color: #8e6877; white-space: nowrap; }
+.progress-wrap { height: 10px; flex: 1; background: #f5e7ed; border-radius: 999px; overflow: hidden; }
+.progress { height: 100%; width: 35%; background: linear-gradient(90deg,var(--pink2),var(--pink)); transition: width .3s ease; }
+.round { font-size: 13px; color: #a09499; white-space: nowrap; font-weight: 600; }
+
+/* Match Grid */
+.match-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+.vs-badge {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--pink), #ff8fb3);
+  color: #fff;
+  font-weight: 900;
+  font-style: italic;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(255,111,157,.4);
+  z-index: 10;
+  border: 3px solid #fff;
+}
+
+/* Candidate Card */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(95,53,70,.07);
+  transition: all .2s ease;
+  text-align: center;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(255,111,157,.18);
+  border-color: var(--pink2);
+}
+.card:active { transform: scale(.98); }
+
+.photo-wrapper {
+  position: relative;
+  aspect-ratio: 4/5;
+  width: 100%;
+  background: #fdf0f4;
+  overflow: hidden;
+}
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.card:hover .photo-wrapper img {
+  transform: scale(1.04);
+}
+
+.card-info {
+  padding: 16px 12px;
+}
+.card-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.card-desc {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.btn-vote {
+  margin-top: 10px;
+  width: 80%;
+  padding: 8px 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--soft);
+  color: #df5d88;
+  font-weight: 700;
+  font-size: 13px;
+  transition: background .2s;
+}
+.card:hover .btn-vote {
+  background: var(--pink);
+  color: #fff;
+}
+
+@media (max-width: 580px) {
+  .match-grid { grid-template-columns: 1fr; gap: 16px; }
+  .vs-badge { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- 头部 Header -->
+  <header class="hero">
+    <div class="logo">TF101 SMILE CHAMPION</div>
+    <h1>谁的笑颜在你心里是<span class="brand">第一位</span>？</h1>
+    <p>心动 1v1 对决，选出最治愈你的笑容！</p>
+  </header>
+
+  <!-- 主主体内容区 Panel -->
+  <main class="panel">
+    <!-- 进度条 -->
+    <div class="topbar">
+      <span class="stage">小组赛 16强</span>
+      <div class="progress-wrap">
+        <div class="progress" style="width: 35%;"></div>
+      </div>
+      <span class="round">第 3 / 8 组</span>
+    </div>
+
+    <!-- 对决卡片区域 -->
+    <div class="match-grid">
+      <div class="vs-badge">VS</div>
+
+      <!-- 选手 A -->
+      <div class="card">
+        <div class="photo-wrapper">
+          <!-- 替换为选手真实图片地址 -->
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="选手A">
+        </div>
+        <div class="card-info">
+          <div class="card-name">选手 A</div>
+          <div class="card-desc">“像阳光一样的治愈系笑容”</div>
+          <button class="btn-vote">为你投一票</button>
+        </div>
+      </div>
+
+      <!-- 选手 B -->
+      <div class="card">
+        <div class="photo-wrapper">
+          <!-- 替换为选手真实图片地址 -->
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="选手B">
+        </div>
+        <div class="card-info">
+          <div class="card-name">选手 B</div>
+          <div class="card-desc">“清爽温柔的梨涡笑颜”</div>
+          <button class="btn-vote">为你投一票</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
